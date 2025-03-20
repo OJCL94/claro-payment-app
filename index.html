@@ -244,7 +244,65 @@
             </div>
         </div>
     </template>
+    <!-- View 006: Success Screen -->
+     <template id="view-006">
+        <div class="header">
+            <div class="logo">
+                <span class="logo-text">Claro</span>
+                <span>Atención Virtual</span>
+            </div>
+            <div class="character success-character">
+                <img src="./img/success-character.png" alt="Success">
+            </div>
+        </div>
+        <div class="content">
+            <div class="home-icon">
+                <img src="img/home.png" alt="Home">
+            </div>
+            <h2 class="greeting">¡Hola!</h2>
+            <h1 class="main-text success-text">Esperemos el pago a sus recibos</h1>
+            
+            <div class="dni-info">
+                <p><strong>DNI: <span id="dni-display-voucher"></span></strong></p>
+                <p>Recibos seleccionados(<span id="receipts-count-voucher"></span>)</p>
+            </div>
 
+            <div class="total-section">
+                <span>Total a pagar</span>
+                <span id="total-amount-voucher">S/0.00</span>
+            </div>
+
+            <div class="voucher-container">
+                <div class="voucher-header">IZIPAY</div>
+                <div class="voucher-info">
+                    <p>ID: <span id="voucher-id"></span></p>
+                    <p>CLARO AMERICA MÓVIL</p>
+                    <p>AVENIDA NICOLAS ARRIOLA 4 - LA VICTORIA</p>
+                    <p>COMPRAS</p>
+                    <p>OPERACIÓN: <span id="voucher-operation"></span></p>
+                    <p>TERM: <span id="voucher-terminal"></span></p>
+                    <p>APP: <span id="voucher-app"></span> TIPO: <span id="voucher-type"></span></p>
+                    <p>TARJ: <span id="voucher-card"></span></p>
+                    <p class="voucher-name"><span id="voucher-name"></span></p>
+                    <p class="voucher-total">TOTAL S/ <span id="voucher-amount"></span></p>
+                    <div class="voucher-divider"></div>
+                    <p class="voucher-accept">ACEPTO PAGAR AL EMISOR DE LA TARJETA</p>
+                    <p class="voucher-accept">EL IMPORTE ANOTADO EN ESTE TÍTULO</p>
+                    <div class="voucher-divider"></div>
+                    <p class="voucher-payment-method">PAGA CON TARJETA</p>
+                    <p>DE PRUEBAS</p>
+                    <p>IZIPAY</p>
+                    <p class="voucher-aid">AID: <span id="voucher-aid"></span></p>
+                    <p>APP LABEL: <span id="voucher-app-label"></span></p>
+                    <p>CRIPTO: <span id="voucher-crypto"></span></p>
+                </div>
+            </div>
+            <div class="timer">
+            Su operación continuará en <span id="timer-voucher">8</span>
+        </div>
+    </div>
+</template>
+            
     <script src="models.js"></script>
     <script src="controllers.js"></script>
     <script src="app.js"></script>
