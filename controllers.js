@@ -94,6 +94,9 @@ class ClaroPaymentController {
             case 'view-005':
                 this.setupSuccessView();
                 break;
+            case 'view-006':
+                this.setupVoucherView();
+                break;            
         }
         
         // Setup home icon on all views
@@ -250,17 +253,68 @@ class ClaroPaymentController {
         if (cardPayment) {
             cardPayment.addEventListener('click', () => {
                 this.model.generateOperationData('Tarjeta');
-                this.loadView('view-005');
+                this.model.generateVoucherData();
+                this.loadView('view-006');
             });
         }
         
         if (otherPayment) {
             otherPayment.addEventListener('click', () => {
                 this.model.generateOperationData('Otros medios');
+                this.model.generateVoucherData();
                 this.loadView('view-005');
             });
         }
     }
+    setupVoucherView() {
+        const dniDisplay = document.getElementById('dni-display-voucher');
+        const receiptCount = document.getElementById('receipts-count-voucher');
+        const totalAmount = document.getElementById('total-amount-voucher');
+        const timerSpan = document.getElementById('timer-voucher');
+        
+        // Display user data
+        if (dniDisplay) {
+            dniDisplay.textContent = this.model.userData.inputValue;
+        }
+        
+        if (receiptCount) {
+            receiptCount.textContent = this.model.userData.selectedReceipts.length;
+        }
+        
+        if (totalAmount) {
+            totalAmount.textContent = `S/${this.model.getTotalAmount().toFixed(2)}`;
+        }
+        
+        // Display voucher data
+        document.getElementById('voucher-id').textContent = this.model.voucherData.id;
+        document.getElementById('voucher-operation').textContent = this.model.voucherData.operation;
+        document.getElementById('voucher-terminal').textContent = this.model.voucherData.terminal;
+        document.getElementById('voucher-app').textContent = this.model.voucherData.app;
+        document.getElementById('voucher-type').textContent = this.model.voucherData.type;
+        document.getElementById('voucher-card').textContent = this.model.voucherData.card;
+        document.getElementById('voucher-name').textContent = this.model.voucherData.name;
+        document.getElementById('voucher-amount').textContent = this.model.getTotalAmount().toFixed(2);
+        document.getElementById('voucher-aid').textContent = this.model.voucherData.aid;
+        document.getElementById('voucher-app-label').textContent = this.model.voucherData.appLabel;
+        document.getElementById('voucher-crypto').textContent = this.model.voucherData.crypto;
+        
+        // Set up timer
+        if (timerSpan) {
+            let seconds = 8;
+            timerSpan.textContent = seconds;
+            
+            this.timerInterval = setInterval(() => {
+                seconds--;
+                timerSpan.textContent = seconds;
+                
+                if (seconds <= 0) {
+                    clearInterval(this.timerInterval);
+                    this.loadView('view-005');
+                }
+            }, 1000);
+        }
+    }
+
     
     /**
      * Sets up handlers for the receipts selection view
