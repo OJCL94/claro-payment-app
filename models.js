@@ -39,6 +39,40 @@ class ClaroPaymentModel {
             operationType: 'Pago de servicios',
             paymentMethod: ''
         };
+        // Voucher data
+        this.voucherData = {
+            id: '',
+            operation: '',
+            terminal: '',
+            app: '',
+            type: '',
+            card: '',
+            name: '',
+            aid: '',
+            appLabel: '',
+            crypto: ''
+        };
+        /**
+         * Generates voucher data for the payment receipt
+         */
+        generateVoucherData() {
+            this.voucherData.id = '1206' + Math.floor(Math.random() * 10000000000);
+            this.voucherData.operation = `${Math.floor(Math.random() * 100)}/24`;
+            this.voucherData.terminal = `03580${Math.floor(Math.random() * 100)}`;
+            this.voucherData.app = `A73${Math.floor(Math.random() * 100)}`;
+            this.voucherData.type = this.operationData.paymentMethod === 'Tarjeta' ? 'VISA' : 'OTRO';
+            this.voucherData.card = '*****' + Math.floor(Math.random() * 10000);
+            this.voucherData.name = 'JUAN DIAZ';
+            this.voucherData.aid = 'A0000000031010';
+            this.voucherData.appLabel = this.operationData.paymentMethod === 'Tarjeta' ? 'VISA CREDITO' : 'OTRO MEDIO';
+            
+            // Generate crypto code
+            let crypto = '';
+            for (let i = 0; i < 8; i++) {
+                crypto += Math.floor(Math.random() * 100) + ' ';
+            }
+            this.voucherData.crypto = crypto.trim();
+        }
     }
     
     /**
