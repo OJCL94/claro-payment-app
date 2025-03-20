@@ -300,7 +300,7 @@ class ClaroPaymentController {
         
         // Set up timer
         if (timerSpan) {
-            let seconds = 8;
+            let seconds = 15;
             timerSpan.textContent = seconds;
             
             this.timerInterval = setInterval(() => {
