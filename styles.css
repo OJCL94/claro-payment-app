@@ -294,3 +294,53 @@ body {
     height: 24px;
     margin-bottom: 5px;
 }
+.voucher-container {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 20px 0;
+    background-color: #f9f9f9;
+    font-family: monospace;
+    font-size: 12px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.voucher-header {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.voucher-info {
+    line-height: 1.3;
+}
+
+.voucher-info p {
+    margin: 2px 0;
+}
+
+.voucher-name {
+    text-align: center;
+    margin: 5px 0;
+}
+
+.voucher-total {
+    text-align: center;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.voucher-divider {
+    border-top: 1px dashed #ddd;
+    margin: 8px 0;
+}
+
+.voucher-accept, .voucher-payment-method {
+    text-align: center;
+    font-size: 11px;
+}
+
+.voucher-aid {
+    margin-top: 5px;
+}
