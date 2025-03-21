@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claro - Atención Virtual</title>
+    <link rel="icon" href="./img/logo.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <div id="view-container">
+            <!-- Views will be loaded here -->
+        </div>
+    </div>
+
+    <!-- Templates for each view -->
+    <!-- View 001: Initial Input Screen -->
+    <template id="view-001">
+        <div class="header">
+            <div class="logo">
+                <span class="logo-text">Claro</span>
+                <span>Atención Virtual</span>
+            </div>
+            <div class="character">
+                <img src="./img/character-female.png" alt="Character">
+            </div>
+        </div>
+        <div class="content">
+            <div class="home-icon">
+                <img src="./img/home.png" alt="Home">
+            </div>
+            <h2 class="greeting">¡Hola!</h2>
+            
+            <div class="input-options">
+                <div class="input-option">
+                    <img src="./img/dni.png" alt="DNI">
+                    <p>Número de DNI</p>
+                </div>
+                <div class="input-option">
+                    <img src="./img/receipt.png" alt="Código">
+                    <p>Código de pago</p>
+                </div>
+                <div class="input-option">
+                    <img src="./img/phone.png" alt="Teléfono">
+                    <p>Número de teléfono</p>
+                </div>
+            </div>
+            
+            <div class="input-instruction">
+                Estimado Cliente, ingrese el DNI ligado a su cuenta, el número del código de pago o el número de teléfono de su cuenta
+            </div>
+            
+            <div class="input-form">
+                <input type="text" id="input-field" class="input-field" maxlength="14" placeholder="Ingrese su información">
+                <button class="btn" id="continue-btn">Continuar</button>
+            </div>
+        </div>
+    </template>
+
+    <!-- View 002: Pending Bills -->
+    <template id="view-002">
+        <div class="header">
+            <div class="logo">
+                <span class="logo-text">Claro</span>
+                <span>Atención Virtual</span>
+            </div>
+            <div class="character">
+                <img src="./img/character-blue.png" alt="Character">
+            </div>
+        </div>
+        <div class="content">
+            <div class="home-icon">
+                <img src="img/home.png" alt="Home">
+            </div>
+            <h2 class="greeting">¡Hola!</h2>
+            <h1 class="main-text">Esperamos el pago a sus recibos</h1>
+            
+            <div class="dni-info">
+                <p><strong>DNI: <span id="dni-display"></span></strong></p>
+                <p>Recibos seleccionados(<span id="receipts-count">0</span>)</p>
+            </div>
+            
+            <div class="total-section">
+                <span>Total a pagar</span>
+                <span id="total-amount">S/0.00</span>
+            </div>
+            
+            <div id="receipts-container">
+                <!-- Receipts will be added here -->
+            </div>
+            
+            <button class="btn" id="payment-btn" disabled>Continuar con el pago</button>
+            
+            <div class="timer">
+                Su operación continuará en <span id="timer">8</span>
+            </div>
+        </div>
+    </template>
+
+    <!-- View 003: Payment Method -->
+    <template id="view-003">
+        <div class="header">
+            <div class="logo">
+                <span class="logo-text">Claro</span>
+                <span>Atención Virtual</span>
+            </div>
+            <div class="character">
+                <img src="img/character-female.png" alt="Character">
+            </div>
+        </div>
+        <div class="content">
+            <div class="home-icon">
+                <img src="img/home.png" alt="Home">
+            </div>
+            <h2 class="greeting">¡Hola!</h2>
+            <h1 class="main-text">Seleccione método de pago</h1>
+            
+            <div class="payment-methods">
+                <div class="payment-method" id="card-payment">
+                    <img src="./img/card.png" alt="Card">
+                    <p>Tarjeta de débito o crédito</p>
+                </div>
+                <div class="payment-method" id="other-payment">
+                    <img src="./img/other-payment.png" alt="Other">
+                    <p>Otros medios de pago</p>
+                </div>
+            </div>
+            
+            <div class="dni-info">
+                <p><strong>DNI: <span id="dni-display-payment"></span></strong></p>
+                <p>Recibos seleccionados(<span id="receipts-count-payment"></span>)</p>
+            </div>
+            
+            <div class="total-section">
+                <span>Total a pagar</span>
+                <span id="total-amount-payment">S/0.00</span>
+            </div>
+            
+            <div id="selected-receipt">
+                <p id="receipt-info"></p>
+                <p id="receipt-month"></p>
+            </div>
+        </div>
+    </template>
+
+    <!-- View 004: Receipts Selection -->
+    <template id="view-004">
+        <div class="header">
+            <div class="logo">
+                <span class="logo-text">Claro</span>
+                <span>Atención Virtual</span>
+            </div>
+            <div class="character">
+                <img src="./img/character-male.png" alt="Character">
+            </div>
+        </div>
+        <div class="content">
+            <div class="home-icon">
+                <img src="img/home.png" alt="Home">
+            </div>
+            <h2 class="greeting">¡Hola!</h2>
+            
+            <div class="dni-info">
+                <p><strong>DNI: <span id="dni-display-selection"></span></strong></p>
+                <p>Recibos seleccionados(<span id="receipts-count-selection">0</span>)</p>
+            </div>
+            
+            <div class="total-section">
+                <span>Total a pagar</span>
+                <span id="total-amount-selection">S/0.00</span>
+            </div>
+            
+            <div id="receipts-selection-container">
+                <!-- Receipts will be added here -->
+            </div>
+            
+            <button class="btn" id="select-all-btn">Seleccionar todo</button>
+            
+            <div class="timer">
+                Esta operación se cancelará en <span id="timer-selection">2</span>
+            </div>
+        </div>
+    </template>
+
+    <!-- View 005: Payment Voucher Preview -->
+    <template id="view-005">
+        <div class="header">
+            <div class="logo">
+                <span class="logo-text">Claro</span>
+                <span>Atención Virtual</span>
+            </div>
+            <div class="character">
+                <img src="./img/character-female.png" alt="Character">
+            </div>
+        </div>
+        <div class="content">
+            <div class="home-icon">
+                <img src="./img/home.png" alt="Home">
+            </div>
+            <h2 class="greeting">¡Hola!</h2>
+            <h1 class="main-text">Esperamos el pago a sus recibos</h1>
+            
+            <div class="dni-info">
+                <p><strong>DNI: <span id="dni-display-voucher"></span></strong></p>
+                <p>Recibos seleccionados(<span id="receipts-count-voucher">1</span>)</p>
+            </div>
+            
+            <div class="total-section">
+                <span>Total a pagar</span>
+                <span id="total-amount-voucher">S/0.00</span>
+            </div>
+            
+            <div class="voucher-preview">
+                <div class="voucher-header">IZIPAY</div>
+                <div class="voucher-content">
+                    <p>ID: <span id="transaction-id">1206193112004110</span></p>
+                    <p>CLARO AMERICA MÓVIL</p>
+                    <p>AVENIDA NICOLAS ARRIOLA 480 - LA VICTORIA</p>
+                    <p>COMPRAS</p>
+                    <p>TERM: <span id="terminal-id">03500072</span> <span class="align-right">POS.148</span></p>
+                    <p>AID: <span id="aid-number">A73339</span> <span class="align-right">REF: 6110 LOTENDOZE</span> <span class="align-right">TIPO: VISA</span></p>
+                    <p>TARJ: ***** <span id="card-number">9129</span></p>
+                    <p class="customer-name" id="customer-name">JUAN DIAZ</p>
+                    <p>TOTAL S/ <span id="voucher-amount">0.00</span></p>
+                    <div class="voucher-divider"></div>
+                    <p class="align-center">ACEPTO PAGAR AL EMISOR DE LA TARJETA</p>
+                    <p class="align-center">EL IMPORTE ANOTADO EN ESTE TÍTULO</p>
+                    <div class="voucher-divider"></div>
+                    <p class="align-center">PAGA CON TARJETA</p>
+                    <p class="align-center">DE PRUEBAS</p>
+                    <p class="align-center">IZIPAY</p>
+                    <div class="voucher-divider"></div>
+                    <p>AID: A0000000031010</p>
+                    <p>APP LABEL: VISA CREDITO</p>
+                    <p>CRIPTO: 72 9C 24 AB 55 3A 9E 7B</p>
+                </div>
+            </div>
+            
+            <button class="btn" id="confirm-payment-btn">Confirmar Pago</button>
+            
+            <div class="timer">
+                Su operación continuará en <span id="timer-voucher">8</span>
+            </div>
+        </div>
+    </template>
+    
+    <!-- View 006: Success Screen -->
+    <template id="view-006">
+        <div class="header">
+            <div class="logo">
+                <img src="./img/logo.png" alt="Claro" class="logo-img">
+                <span>Atención Virtual</span>
+            </div>
+            <div class="character success-character">
+                <img src="./img/success-character.png" alt="Success">
+            </div>
+        </div>
+        <div class="content">
+            <div class="home-icon">
+                <img src="./img/home.png" alt="Home">
+            </div>
+            <h2 class="greeting">¡Hola!</h2>
+            <h1 class="main-text success-text">¡Operación realizada con éxito!</h1>
+            
+            <div class="success-info">
+                <div class="info-row">
+                    <span>Tipo de operación</span>
+                    <span>Pago de servicios</span>
+                </div>
+                <div class="info-row">
+                    <span>ID de operación</span>
+                    <span id="operation-id"></span>
+                </div>
+                <div class="info-row">
+                    <span>Fecha y Hora</span>
+                    <span id="operation-date"></span>
+                </div>
+            </div>
+            
+            <div class="divider"></div>
+            
+            <div class="payment-details">
+                <p>Ud. pagó</p>
+                <div class="info-row">
+                    <span id="receipt-id"></span>
+                    <span id="payment-amount"></span>
+                </div>
+                <div class="info-row">
+                    <span>Mes: <span id="payment-month"></span></span>
+                </div>
+            </div>
+            
+            <div class="contact-options">
+                <div class="contact-option">
+                    <img src="./img/sms.png" alt="SMS">
+                    <p>SMS</p>
+                </div>
+                <div class="contact-option">
+                    <img src="./img/email.png" alt="Email">
+                    <p>CORREO</p>
+                </div>
+            </div>
+            
+            <div class="timer">
+                Su operación continuará en <span id="timer-success">6</span>
+            </div>
+        </div>
+    </template>
+
+    <script src="models.js"></script>
+    <script src="controllers.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
